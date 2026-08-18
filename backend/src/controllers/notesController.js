@@ -2,7 +2,7 @@ import Note from '../models/Note.js';
 
 export const getAllNotes = async (req, res) => {
     try {
-        const notes = (await Note.find()).toSorted({ createdAt: -1 }); // Sort notes by createdAt in descending order
+        const notes = await Note.find().sort({ createdAt: -1 }); // Sort notes by createdAt in descending order
         res.status(200).json(notes);
     } catch (error) {
         res.status(500).json({ message: "Error retrieving notes", error: error.message });
